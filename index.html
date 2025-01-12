@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nettoyage de Sépultures</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .header {
+            width: 100%;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .header .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .header .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .header .logo h1 {
+            font-size: 1.5rem;
+            color: #333;
+            margin: 0;
+        }
+
+        .header nav {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .header nav a {
+            text-decoration: none;
+            font-size: 1rem;
+            color: #007BFF;
+            transition: color 0.3s;
+        }
+
+        .header nav a:hover {
+            color: #0056b3;
+        }
+
+
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background-image: url('macau-photography-FV7f__g36Mw-unsplash.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin: 0;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin: 10px 0 0;
+        }
+
+        .hero-content a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .hero-content a:hover {
+            background-color: #0056b3;
+        }
+
+        .hero-content .phone {
+            display: block;
+            margin-top: 20px; /* Pour espacer le numéro */
+            font-size: 2rem; /* Augmenter la taille du texte */
+            font-weight: bold; /* Rendre le texte plus épais */
+            color: #FF4500; /* Une couleur vive pour plus de visibilité */
+            text-align: center;
+        }
+
+        .description {
+            padding: 50px 20px;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+
+        .description h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .description p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .pricing, .pricing-subscription {
+            padding: 50px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .pricing h2, .pricing-subscription h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .pricing-cards, .pricing-cards-subscription {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .pricing-card, .pricing-card-subscription {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .pricing-card h3, .pricing-card-subscription h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .pricing-card p, .pricing-card-subscription p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .pricing-card ul, .pricing-card-subscription ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 15px;
+        }
+
+        .pricing-card ul li, .pricing-card-subscription ul li {
+            margin-bottom: 5px;
+        }
+
+        .pricing-card .price, .pricing-card-subscription .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #007BFF;
+        }
+
+        .options {
+            max-width: 940px;
+            margin: 30px auto 0;
+            padding: 20px;
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            text-align: left;
+        }
+
+        .options h4 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .options ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .options ul li {
+            margin-bottom: 5px;
+        }
+
+        /* Styles pour les paragraphes de description */
+        .pricing p, .pricing-subscription p {
+            font-size: 1.125rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 800px;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .footer {
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .footer a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Section Contact */
+        #contact {
+            background-color: #fff;
+            padding: 40px 20px;
+            margin-top: 50px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin: auto;
+        }
+
+        #contact h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        #contact p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        /* Style du formulaire */
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input, textarea {
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        @media (max-width: 768px) {
+            .pricing-cards, .pricing-cards-subscription {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .pricing-card, .pricing-card-subscription {
+                width: 90%;
+                margin-bottom: 20px;
+            }
+
+            .header nav {
+                justify-content: center;
+            }
+
+            .pricing p, .pricing-subscription p {
+                font-size: 1rem;
+                text-align: center;
+                padding: 0 10px;
+            }
+
+            #contact {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <img src="logo.png" alt="Logo de l'entreprise">
+            <h1>Dusty Brosse - Nettoyage de Sépultures à Amiens</h1>
+        </div>
+        <nav>
+            <a href="#pricing">Tarifs</a>
+            <a href="#subscription">Abonnements</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="overlay"></div>
+        <div class="hero-content">
+            <h1>Service de Nettoyage de Sépultures à Amiens</h1>
+            <p>Pour honorer la mémoire de vos proches avec soin et respect.</p>
+            <span class="phone">Contactez-nous : 01 23 45 67 89</span>
+            <a href="#pricing">Découvrir nos tarifs</a>
+        </div>
+    </div>
+
+       <!-- Zone Texte -->
+    <section class="description">
+        <h2>Pourquoi choisir nos services pour le <strong>nettoyage de sépultures</strong> à <strong>Amiens</strong> ?</h2>
+        <p>À Amiens, nous prenons soin des <strong>tombes </strong> avec respect et expertise. Nettoyage complet, produits adaptés, et entretien personnalisé garantissent propreté et dignité toute l’année.</p>
+        <br>
+        <img src="https://www.en-sa-memoire.fr/wp-content/uploads/2016/06/Entretrien-avant-apres-0011.jpg" alt="">
+    </section>
+
+    <!-- Tarifs ponctuels -->
+    <section class="pricing" id="pricing">
+        <h2>Nos Tarifs pour une opération ponctuelle</h2>
+        <p>Nos tarifs s'appliquent aux <strong>sépultures</strong> de dimensions standards, correspondant approximativement à une surface de 4 m². Si nous constatons que le forfait sélectionné ne correspond pas aux spécificités de la <strong>sépulture</strong>, nous vous proposerons un devis personnalisé. </p>
+        <div class="pricing-cards">
+            <div class="pricing-card">
+                <h3>Essentiel</h3>
+                <p>Un entretien de base pour préserver la propreté.</p>
+                <ul>
+                    <li>Grattage de la mousse.</li>  
+                    <li>Nettoyage avec détergent doux et brossage.</li>
+                    <li>Rinçage à l'eau.</li>
+                    <li>Nettoyage des plaques funéraires.</li>
+                    <li>Élimination des fleurs fanées.</li>
+                    <li>Réagencement des ornements (bougies, petits objets).</li>
+                    <li>photo avant/après</li>
+                </ul>
+                <div class="price">49€</div>
+            </div>
+
+            <div class="pricing-card">
+                <h3>Avancé</h3>
+                <p>Un soin complet pour une <strong>sépulture</strong> impeccable.</p>
+                <ul>
+                    <li>Tous les services du forfait Essentiel.</li>
+                    <li>Nettoyage approfondi</li>
+                    <li>Traitement anti-mousse</li>
+                    <li>Entretien des décorations</li>
+                </ul>
+                <div class="price">95€</div>
+            </div>
+
+            <div class="pricing-card">
+                <h3>Prestige</h3>
+                <p>Le nec plus ultra pour honorer vos proches.</p>
+                <ul>
+                    <li>Nettoyage approfondi</li>
+                    <li>Traitement anti-mousse</li>
+                    <li>Entretien des décorations</li>
+                    <li>Fleurs fraîches déposées</li>
+                </ul>
+                <div class="price">139€</div>
+            </div>
+        </div>
+        <div class="options">
+            <h4>Options disponibles :</h4>
+            <ul>
+                <li>Lettrage noir ou or: 2€ par lettre</li>
+                <li>Désherbage : 5€</li>
+                <li>Changement de cailloux (sur devis)</li>
+            </ul>
+        </div>
+    </section>
+    <!-- Tarifs abonnements -->
+    <section class="pricing-subscription" id="subscription">
+        <h2>Nos Tarifs Abonnements</h2>
+        <p>Optez pour nos services d'entretien réguliers avec nos offres d'abonnement, pour une tranquillité d'esprit tout au long de l'année. Nos abonnements sont pensés pour maintenir <strong>l'entretien de la sépulture</strong> à intervalles réguliers, avec des services de nettoyage adaptés à vos besoins. En choisissant l'un de nos forfaits mensuels ou bimensuels, vous bénéficiez d'un suivi constant et d'un entretien premium pour honorer la mémoire de vos proches avec le plus grand soin.</p>
+        <div class="pricing-cards-subscription">
+            <div class="pricing-card-subscription">
+                <h3>Essentiel</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <ul>
+                    <li>Un nettoyage Essentiel annuel</li>
+                    <li>Enlèvement des débris</li>
+                    <li>Inspection mensuelle</li>
+                </ul>
+                <div class="price">30€ / mois</div>
+            </div>
+
+            <div class="pricing-card-subscription">
+                <h3>Avancé</h3>
+                <p>Entretien bimensuel pour un soin approfondi.</p>
+                <ul>
+                    <li>Nettoyage approfondi</li>
+                    <li>Traitement anti-mousse</li>
+                    <li>Entretien des décorations</li>
+                    <li>Inspection bimensuelle</li>
+                </ul>
+                <div class="price">60€ / mois</div>
+            </div>
+
+            <div class="pricing-card-subscription">
+                <h3>Prestige</h3>
+                <p>Entretien mensuel avec un service premium.</p>
+                <ul>
+                    <li>Nettoyage approfondi</li>
+                    <li>Traitement anti-mousse</li>
+                    <li>Entretien des décorations</li>
+                    <li>Fleurs fraîches déposées</li>
+                    <li>Inspection mensuelle</li>
+                </ul>
+                <div class="price">100€ / mois</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contactez-nous</h2>
+        <p>Pour toute question ou demande, remplissez ce formulaire et nous vous répondrons dans les plus brefs délais.</p>
+        <p>Vous pouvez nous joindre par mail contact@sepultura.fr ou par téléphone au 06 51 53 78 88</p>
+
+        <form action="process.php" method="POST" id="contact-form">
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" required placeholder="Votre nom">
+
+            <label for="telephone">Telephone :</label>
+            <input type="text" id="telephone" name="telephone" required placeholder="Votre telephone">
+
+            <label for="email">Email :</label>
+            <input type="email" id="email" name="email" required placeholder="Votre email">
+
+            <label for="message">Message :</label>
+            <textarea id="message" name="message" rows="5" required placeholder="Votre message"></textarea>
+
+            <input type="hidden" name="sujet" value="sepulture">
+
+            <input type="submit" value="Envoyer">
+        </form>
+
+        <div id="response-message"></div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Propreté 360. Tous droits réservés. | <a href="#contact">Contactez-nous</a></p>
+    </footer>
+
+</body>
+</html>
